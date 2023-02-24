@@ -9,7 +9,7 @@ const reactionSchema = new Schema({
   reactionBody: {
     type: String,
     required: true,
-    maxlength: 280
+    maxLength: 280
   },
   username: {
     type: String,
@@ -18,6 +18,7 @@ const reactionSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
+    // using the getter method on this field to format the timestamp using the `toLocaleString` when the document is retrieved from the database 
     get: function(value) {
       return new Date(value).toLocaleString();
     }
@@ -25,4 +26,3 @@ const reactionSchema = new Schema({
 });
 
 module.exports = mongoose.model('Reaction', reactionSchema);
-
