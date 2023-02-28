@@ -1,7 +1,7 @@
 // const { response } = require('express');
 // put back User
 const { Thought, User} = require('../models');
-const { populate } = require('../models/User');
+// const { populate } = require('../models/User');
 
 module.exports = {
     // get all thoughts of a user
