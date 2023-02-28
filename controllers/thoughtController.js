@@ -56,6 +56,24 @@ getThoughtById({ params }, res) {
       });
   },
 
+  deleteThought(req, res) {
+    Thought.findOneAndDelete({_id: req.params.id})
+    .then((thought) => {
+        if(!thought){
+            res.status(404).json({message: 'No thought with that ID'})
+
+
+        }
+
+        return User.findOneAndUpdate(
+            {_id:req.body.userID},
+            {$pull:{thoughts:thought._id}},
+            {new:true}
+
+        )
+   }).then(() => res.json({message: 'User and associated apps deleted!'})).catch((err) => res.status(500).json(err));
+  },
+
 
 //add reaction
 

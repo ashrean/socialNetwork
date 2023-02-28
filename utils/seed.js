@@ -1,6 +1,6 @@
 const connection = require('../config/connection')
 const { Thought, User } = require('../models')
-const {faker} = require('@faker-js/faker')
+const { faker } = require('@faker-js/faker')
 
 connection.on('error', (err) => console.log(err))
 
