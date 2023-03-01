@@ -29,9 +29,10 @@ Because this application won’t be deployed, you’ll also need to create a wal
 
 # Github Account
 - [GitHub](https://github.com/ashrean)
-- [Deployed Link]()
+- [Deployed Video Link ](https://drive.google.com/file/d/1B2OKk25JdRX8I0Gm1y23Zjc4U3cLL3-y/view)
 
 # Images
+- The following image show the relationship and functionality between the the controllers, routes and the models.
 ![alt text](./utils/images/Screenshot%202023-02-28%20at%2010.47.47%20PM.png)
 
 # Contacts
@@ -59,5 +60,3 @@ db.once('open', ()=> {
 ```
 # Resources
 - Class Activities / Mini Projects
-
-
