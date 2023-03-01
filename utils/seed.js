@@ -11,9 +11,9 @@ connection.once('open', async () => {
 
     const users = [];
 
-    for (i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
         users.push({
-            username: faker.internet,userName(),
+            username: faker.internet.userName(),
             email: faker.internet.email(),
         });
     }
