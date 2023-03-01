@@ -3,7 +3,7 @@ const { Thought, User } = require("../models");
 
 module.exports = {
     // get all users
-    getAllUsers(req, res) {
+    getAllUser(req, res) {
         User.find().then((users) => res.json(users)).catch((err) => res.status(500).json(err));
     },
     // create user
@@ -32,9 +32,24 @@ module.exports = {
         })).then(() => res.json({ message: 'User and associated apps deleted!' })).catch((err) => res.status(500).json(err));
     },
     // getUserById
-    getUserById(req, res) {
-        User.findOne({ _id: req.params.id }).then((user) => !user ? res.status(404).json({ message: 'No user with that ID' }) : res.json(user)).catch((err) => res.status(500).json(err));
-    },
+    getUserById({ params }, res) {
+        User.findOne({ _id: params.id })
+          .populate({
+            path: "thoughts",
+            select: "-__v",
+          })
+          .populate({
+            path: "friends",
+            select: "-__v",
+          })
+          .select("-__v")
+          .then((user) =>
+            !user
+              ? res.status(404).json({ message: "No user found with this id!" })
+              : res.json(user)
+          )
+          .catch((err) => res.status(400).json(err));
+      },
     // addFriend
     addFriend(req, res) {
         console.log('You are adding a friend');
@@ -64,5 +79,3 @@ module.exports = {
         }).then((user) => !user ? res.status(404).json({ message: 'No friend found with that ID :(' }) : res.json(user)).catch((err) => res.status(500).json(err));
     }
 };
-
-
